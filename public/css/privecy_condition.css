@@ -1,0 +1,69 @@
+ .w {
+     font-size: 3rem;
+     color: #006D74;
+
+     text-align: left;
+     margin: 0;
+     padding: 2rem 0;
+ }
+
+ p {
+     font-size: 1.1rem;
+     color: white;
+     text-align: justify;
+     line-height: 1.5;
+     margin: 0;
+     padding: 0.5rem 0;
+ }
+
+ .card {
+     padding: 1rem;
+     color: #006D74;
+     font-size: 1.5rem;
+     font-weight: 500;
+     margin-left: 20px;
+ }
+
+
+ @media (max-width: 1100px) {
+     .w {
+         font-size: 2.5rem;
+     }
+
+     p {
+         font-size: 1rem;
+     }
+
+     .card {
+         font-size: 1.3rem;
+     }
+ }
+
+ @media (max-width: 800px) {
+     .w {
+         font-size: 1.6rem;
+     }
+
+     p {
+         font-size: 0.9rem;
+     }
+
+     .card {
+         font-size: 1.1rem;
+     }
+ }
+
+ @media (max-width: 500px) {
+
+     .w {
+         font-size: 1.2rem;
+     }
+
+     p {
+         font-size: 0.8rem;
+     }
+
+     .card {
+         font-size: 0.9rem;
+     }
+ }

@@ -1,0 +1,109 @@
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.main-container-child {
+  width: 70%;
+  min-height: 130px;
+  height: auto;
+  border: 1px solid white;
+  border-radius: 20px;
+
+  display: flex;
+
+}
+
+.main-container-child > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.audio-child {
+  width: 15%;
+}
+
+/* .list-num-child {
+  width: 4%;
+} */
+
+.name-child {
+  width: 70%;
+}
+
+/* .arabic-name-child {
+  width: 34%;
+} */
+.like-child {
+  width: 15%;
+  position: relative;
+}
+
+.font-40 {
+  font-size: 40px;
+}
+
+#myaudio {
+  display: none;
+}
+
+.pause-icon {
+  display: none;
+}
+
+.like {
+  fill: white; /* Set the fill color to red when clicked */
+      stroke: green; 
+ 
+}
+
+.list-number {
+  position: absolute;
+  top: 37%;
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+}
+@media (min-width: 768px) and (max-width: 991px) {
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .main-container-child {
+    width: 80%;
+  }
+}
+@media (min-width: 250px) and (max-width: 575px) {
+  .main-container-child {
+    width: 98%;
+    min-height: 100px;
+  }
+
+  .font-40 {
+    font-size: 25px;
+  }
+
+  .font-46 {
+    width: 35 !important;
+    height: 35 !important;
+  }
+  .list-number {
+    top: 35%;
+  }
+
+  .audio-child {
+    width: 20%;
+  }
+
+  .name-child {
+    width: 60%;
+  }
+
+  .like-child {
+    width: 20%;
+    position: relative;
+  }
+}

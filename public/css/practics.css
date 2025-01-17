@@ -1,0 +1,83 @@
+.listening-recording-audio-container {
+  /* border: 2px solid red; */
+  background: linear-gradient(to bottom, #006d74, #02904c);
+  color: white;
+  padding: 10px 5px;
+}
+.audio-subtitle-container,
+.listening-subtitle-container {
+  width: 90%;
+  height: 100%;
+}
+.audio-recording-container {
+  display: flex;
+}
+
+.none {
+  display: none;
+}
+#none {
+  display: none;
+}
+
+.audio-listning-container {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+.hint-section {
+  width: 100%;
+  margin: 0px auto;
+  /* background: linear-gradient(to bottom, #006d74, #02904c); */
+  color: white;
+  padding: 0px 5px;
+}
+.hint-heading {
+  font-size: 1.5rem;
+  color: white;
+  text-align: center;
+}
+.listening-recording-audio-main-container {
+  width: 100%;
+  /* border: 2px solid; */
+}
+.listening-recording-audio-main-container > div {
+  width: 50%;
+  /* border: 2px solid; */
+  margin: 10px auto;
+}
+.disabled-icon {
+  pointer-events: none;
+  opacity: 0.5; /* You can also reduce the opacity to visually indicate it's disabled */
+}
+
+.progress-bar-main-container {
+  width: 100%;
+  /* border: 2px solid black; */
+}
+.progress-bar {
+  margin: 10px auto;
+  background-color: rgb(194, 194, 194);
+  height: 25px;
+  width: 50%;
+  /* border: 1px solid red; */
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.how-much-progress {
+  height: 100%;
+}
+
+@media (min-width: 801px) and (max-width: 1000px) {
+}
+@media (min-width: 501px) and (max-width: 800px) {
+}
+@media (min-width: 250px) and (max-width: 500px) {
+  .listening-recording-audio-main-container > div {
+    width: 95%;
+  }
+  .progress-bar {
+    width: 95%;
+  }
+}

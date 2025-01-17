@@ -1,0 +1,90 @@
+.not-correct-text {
+  animation: marquee 3s linear infinite;
+
+  color: #006d74;
+  font-size: 25px;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(35%);
+  }
+  100% {
+    transform: translateX(-5%);
+  }
+}
+.options-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.option-box {
+  flex: 1;
+  padding: 10px;
+  border: 3px solid white;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  text-align: center;
+  cursor: pointer;
+  height: 100px !important;
+  margin-top: 50px;
+}
+
+.correct-answer {
+  color: #ccc;
+  font-size: 30px;
+  background-color: #006d74;
+}
+
+.wrong-answer {
+  background-color: red;
+}
+
+.mcq-main-container {
+  padding: 0px 0px !important;
+}
+
+#none {
+  display: none;
+}
+
+.audio-player {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.play-pause-button,
+.volume-up-button,
+.volume-down-button {
+  width: 75px;
+  height: 75px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+}
+.volume-control {
+  display: flex;
+}
+
+@media (min-width: 250px) and (max-width: 480px) {
+  .options-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .option-box {
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 744px) {
+  .option-box {
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-top: 20px;
+  }
+}
