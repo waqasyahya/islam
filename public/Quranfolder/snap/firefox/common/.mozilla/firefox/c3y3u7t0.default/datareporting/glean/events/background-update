@@ -1,0 +1,6 @@
+{"timestamp":657106,"category":"nimbus_events","name":"enrollment","extra":{"experiment_type":"rollout","glean_timestamp":"1737030227416","branch":"control","experiment":"extensions-migration-in-import-wizard-116-rollout"}}
+{"timestamp":657138,"category":"nimbus_events","name":"enrollment","extra":{"branch":"rollout","experiment_type":"rollout","experiment":"consolidated-search-configuration-row-desktop-relaunch","glean_timestamp":"1737030227448"}}
+{"timestamp":657231,"category":"nimbus_events","name":"validation_failed","extra":{"experiment":"add-an-image-to-pdf-with-alt-text-rollout","reason":"invalid-feature","glean_timestamp":"1737030227541","feature":"addAnImageInPDF"}}
+{"timestamp":686255,"category":"nimbus_events","name":"unenrollment","extra":{"reason":"recipe-not-seen","glean_timestamp":"1737030256565","experiment":"tab-hover-preview-release-rollout","branch":"control"}}
+{"timestamp":686256,"category":"nimbus_events","name":"validation_failed","extra":{"feature":"addAnImageInPDF","experiment":"add-an-image-to-pdf-with-alt-text-rollout","reason":"invalid-feature","glean_timestamp":"1737030256566"}}
+{"timestamp":1468391,"category":"nimbus_events","name":"exposure","extra":{"branch":"treatment-b","experiment":"fx-view-discoverability-2025-rollout","glean_timestamp":"1737031038701","feature_id":"fxms-message-3"}}

@@ -1,0 +1,4 @@
+{"timestamp":1388160,"category":"browser.usage","name":"interaction","extra":{"source":"keyboard","flow_id":"{e305007e-a0b4-4c9a-a17a-f76359430548}","widget_id":"key-reload","glean_timestamp":"1737030958470"},"execution_counter":4}
+{"timestamp":1414055,"category":"browser.usage","name":"interaction","extra":{"flow_id":"{e305007e-a0b4-4c9a-a17a-f76359430548}","widget_id":"back-button","source":"nav-bar","glean_timestamp":"1737030984365"},"execution_counter":4}
+{"timestamp":1468350,"category":"browser.usage","name":"interaction","extra":{"flow_id":"{e305007e-a0b4-4c9a-a17a-f76359430548}","widget_id":"tab-close-button","glean_timestamp":"1737031038660","source":"tabs-bar"},"execution_counter":4}
+{"timestamp":1472188,"category":"browser.usage","name":"interaction","extra":{"flow_id":"{e305007e-a0b4-4c9a-a17a-f76359430548}","source":"tabs-bar","glean_timestamp":"1737031042498","widget_id":"cmd-closeWindow"},"execution_counter":4}
