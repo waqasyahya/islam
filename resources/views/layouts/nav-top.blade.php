@@ -40,14 +40,14 @@
                 <div class="dropdown profile-dropdown">
                     <a href="#" class="nav-link" data-bs-toggle="dropdown">
                         <span class="float-right">
-                            <img src="{{ URL::asset('img/users/avatar.png') }}"
+                            <img src="{{ URL::asset('/image/WAQAS YAHYA.jpg') }}"
                                 alt="img" class="avatar avatar-md">
                         </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow animated">
                         <div class="text-center pt-2">
-                            <span class="text-center user fs-12 pb-0 font-weight-bold">Mohsin Ali </span><br>
-                            <span class="text-center fs-12 text-muted">---</span>
+                            <span class="text-center user fs-12 pb-0 font-weight-bold">Waqas Yahya</span><br>
+                            <span class="text-center fs-12 text-muted">Full Stack Developer</span>
                             <div class="dropdown-divider mt-3"></div>
 
 
