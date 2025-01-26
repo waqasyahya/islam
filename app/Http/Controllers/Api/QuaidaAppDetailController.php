@@ -9,10 +9,13 @@ use App\Models\QuaidaDetail;
 
 class QuaidaAppDetailController extends Controller
 {
-    public function QuaidaDetailApp($id){
-        $data['data'] = QuaidaDetail::where('Quaida_id',$id)
     
-        ->get();
+    public function QuaidaDetailApp($id)
+    {
+        // Retrieve Quaida details based on the given Quaida_id
+        $data['data'] = QuaidaDetail::where('Quaida_id', $id)->get();  
+        
+        // Loop through each item and modify the audio path and add file type
         foreach ($data['data'] as $item) {
             $audioPath = public_path('Quranfolder/' . $item->audio1);
             $item->audio1 = asset('/Quranfolder/' . $item->audio1);
@@ -21,9 +24,22 @@ class QuaidaAppDetailController extends Controller
             $item->file_type = pathinfo($audioPath, PATHINFO_EXTENSION);
         }
     
-        return response()->json($data);
-
+        // Log the API call with details such as endpoint, method, and record count
+        addLApiChecked('QuaidaDetailApp API Called', [
+            'endpoint' => request()->fullUrl(),
+            'method' => request()->method(),
+            'record_count' => $data['data']->count(),
+        ]);
+    
+        // Return the JSON response with status, message, and data
+        return response()->json([
+            'status' => 200,
+            'message' => 'Data retrieved successfully',
+            'record_count' => $data['data']->count(),
+            'data' => $data['data']
+        ]);
     }
+    
 
 
     public function QuaidaDetailAudio($quaidaId, $id){

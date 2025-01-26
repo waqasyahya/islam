@@ -28,14 +28,14 @@ if (!function_exists('custom_exception')) {
 
 
 
-    if (!function_exists('addLog')) {
+    if (!function_exists('ApiChecked')) {
         /**
          * Add a custom log entry to the 'apprecord' log file.
          *
          * @param string $event The event type (e.g., 'User Registration', 'Login')
          * @param array $customData Custom data to include in the log
          */
-        function addLog(string $event, array $customData = []): void
+        function addLApiChecked(string $event, array $customData = []): void
         {
             // Gather basic log details
             $logData = [
@@ -49,7 +49,7 @@ if (!function_exists('custom_exception')) {
             $logData = array_merge($logData, $customData);
 
             // Write log to the 'apprecord' channel
-            Log::channel('apprecord')->info('Islameapp :', $logData);
+            Log::channel('ApiLogsChecked')->info('Islameapp :', $logData);
         }
     }
 

@@ -8,10 +8,12 @@ use App\Models\QuaidaTest;
 
 class QuaidaAppTestContoller extends Controller
 {
-    public function TestApp($id) {
+    public function TestApp($id)
+    {
+        // Retrieve Quaida test details based on the given Quaida_id
         $data['data'] = QuaidaTest::where('Quaida_id', $id)->get();
     
-        // Assuming your audio files are stored in the "audiofolder" folder inside the public directory
+        // Loop through each item and modify the audio path and add file type
         foreach ($data['data'] as $item) {
             $audioPath = public_path('Quranfolder/' . $item->audio1);
             $item->audio1 = asset('/Quranfolder/' . $item->audio1);
@@ -20,7 +22,20 @@ class QuaidaAppTestContoller extends Controller
             $item->file_type = pathinfo($audioPath, PATHINFO_EXTENSION);
         }
     
-        return response()->json($data);
+        // Log the API call with additional details such as endpoint, method, and record count
+        addLApiChecked('TestApp API Called', [
+            'endpoint' => request()->fullUrl(),
+            'method' => request()->method(),
+            'record_count' => $data['data']->count(),
+        ]);
+    
+        // Return the JSON response with status, message, record count, and data
+        return response()->json([
+            'status' => 200,
+            'message' => 'Data retrieved successfully',
+            'record_count' => $data['data']->count(),
+            'data' => $data['data']
+        ]);
     }
     
 }

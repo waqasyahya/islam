@@ -10,10 +10,26 @@ use Illuminate\Http\Request;
 class QuranAppWithWordController extends Controller
 {
     public function QuranWithWord($id)
-    {
-        $data['data'] = QuranWithWord::where('Quran_id', $id)->get();
-        return response()->json($data);
-    }
+{
+    // Retrieve QuranWithWord records based on the provided Quran_id
+    $data['data'] = QuranWithWord::where('Quran_id', $id)->get();
+
+    // Log the API call with additional details
+    addLApiChecked('QuranWithWord API Called', [
+        'endpoint' => request()->fullUrl(),
+        'method' => request()->method(),
+        'Quran_id' => $id,
+        'record_count' => $data['data']->count(),
+    ]);
+
+    // Return the JSON response with status, message, and data
+    return response()->json([
+        'status' => 200,
+        'message' => 'Data retrieved successfully',
+        'record_count' => $data['data']->count(),
+        'data' => $data['data']
+    ]);
+}
 
 
     public function QuranWordAudio($quranId, $quranAyatId, $quranWordsId){

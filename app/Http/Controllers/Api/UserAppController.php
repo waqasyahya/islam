@@ -28,6 +28,13 @@ class UserAppController extends Controller
             'password' => 'required|string|min:6',
         ]);
 
+        addLApiChecked('Registration attempt started', [
+            'endpoint' => request()->fullUrl(),
+        'method' => request()->method(),
+        'request_data' => $request->all(),
+        ]);
+    
+
         // Initialize variables to check if user already exists
         $userExists = false;
         $existingUser = null;
@@ -57,16 +64,13 @@ class UserAppController extends Controller
                 'phone' => $request->phone,
                 'password' => Hash::make($request->password),
             ]);
-
-            // Log user registration success
-            addLog('User Registration', [
-                'name' => $user->name,
-                'email' => $user->email,
-                'phone' => $user->phone,
-                'status' => 'Success',
+            addLApiChecked('User registered successfully', [
+                'user_id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
             ]);
-
-            // Send the registration email to the user
+        
+           
             Mail::to($user->email)->send(new AppRegisterEmail($user));
 
             // Return success response
@@ -110,12 +114,14 @@ class UserAppController extends Controller
         $user->save();
 
         // Log password reset success
-        addLog('Password Reset', [
+       
+        addLApiChecked('Password Reset', [
             'user_id' => $user->id,
             'email' => $user->email,
             'phone' => $user->phone,
             'status' => 'Success',
         ]);
+    
 
         // Optionally, send an email to notify the user
         if ($user->email) {
@@ -146,8 +152,9 @@ class UserAppController extends Controller
             }
 
             // Log contact retrieval success
-            addLog('email  recoverd', [
-                'user_id' => $user->id,
+          
+            addLApiChecked('email  recoverd', [
+               'user_id' => $user->id,
                 'email' => $user->email,
 
                 'status' => 'successfully',
@@ -170,12 +177,15 @@ class UserAppController extends Controller
             }
 
             // Log contact retrieval success
-            addLog('email  recoverd', [
+           
+            addLApiChecked('email recoverd ', [
                 'user_id' => $user->id,
-
-                'phone' => $user->phone,
-                'status' => 'Success',
-            ]);
+                 'phone' => $user->phone,
+ 
+                 'status' => 'successfully',
+             ]);
+ 
+            
 
             // Return the email associated with the phone number
             return response()->json([
@@ -224,6 +234,11 @@ class UserAppController extends Controller
         ]);
 
         $credentials = $request->only('field', 'password');
+        addLApiChecked('Login attempt started', [
+            'endpoint' => request()->fullUrl(),
+        'method' => request()->method(),
+        'request_data' => $request->all(),
+        ]);
 
         $user = User::where('email', $credentials['field'])
                      ->orWhere('phone', $credentials['field'])
@@ -236,12 +251,13 @@ class UserAppController extends Controller
         }
 
         Auth::login($user);
-        addLog('User Login successful', [
-            'name' => $user->name,
-            'email' => $user->email,
-            'phone' => $user->phone,
-            'status' => 'Success',
+        addLApiChecked('User login successfully', [
+            'user_id' => $user->id,
+        'name' => $user->name,
+        'email' => $user->email,
         ]);
+      
+    
 
         return response()->json(['message' => 'Login successful', 'user' => $user]);
     }
@@ -295,7 +311,7 @@ class UserAppController extends Controller
         ];
 
         // Log the update
-        addLog('User Update Successful', [
+        addLApiChecked('User Update Successful', [
             'name' => $user->name,
             'email' => $user->email,
             'phone' => $user->phone,
@@ -342,7 +358,7 @@ class UserAppController extends Controller
         }
 
         // Log user account deletion
-        addLog('User Account Deletion', [
+        addLApiChecked('User Account Deletion', [
             'user_id' => $user->id,
             'status' => 'Deleted',
         ]);

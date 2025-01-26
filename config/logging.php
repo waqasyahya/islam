@@ -58,10 +58,10 @@ return [
             'ignore_exceptions' => false,
         ],
 
-        'apprecord' => [
+        'ApiLogsChecked' => [
             'driver' => 'single',
-            'path' => storage_path('logs/apprecord.log'),
-            'level' => 'debug',
+            'path' => storage_path('logs/ApiLogsChecked.log'),
+            'level' => 'info',
         ],
 
         'single' => [

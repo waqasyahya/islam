@@ -7,13 +7,32 @@ use Illuminate\Http\Request;
 
 class QuaidaAppController extends Controller
 {
-    public function QuaidaApp(){
-        $data =   Quaida::all();
-    return response()->json($data);
-
-
+    /**
+ * Retrieve all Quaida records and log the API request.
+ * Returns JSON response with data, status, message, and record count.
+   */
+    public function QuaidaApp()
+    {
+        // Retrieve all records from the Quaida model
+        $data = Quaida::all();
+    
+        // Log the API call with additional details using the custom log function
+        addLApiChecked('QuaidaApp API Called', [
+            'endpoint' => request()->fullUrl(),
+            'method' => request()->method(),
+            'record_count' => $data->count(),
+        ]);
+    
+        // Return the JSON response with additional information
+        return response()->json([
+            
+            'data' => $data,
+            'status' => 200,
+            'message' => 'Data retrieved successfully',
+            'record_count' => $data->count()
+        ]);
     }
-
+    
     public function compareVoicesapp(Request $request)
     {
         $request->validate([
