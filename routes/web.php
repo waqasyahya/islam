@@ -101,21 +101,22 @@ Route::get('/delete-cookie', [HomeScreenController::class, 'deleteCookie']);
 
 
 
-Route::middleware('restrictAuthPages')->group(function () {
-    Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [AdminAuthController::class, 'login']);
-    Route::get('/register', [AdminAuthController::class, 'showRegisterForm'])->name('register');
-    Route::post('/register', [AdminAuthController::class, 'register']);
-});
+// Route::middleware('restrictAuthPages')->group(function () {
+//     Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('login');
+//     Route::post('/login', [AdminAuthController::class, 'login']);
+//     Route::get('/register', [AdminAuthController::class, 'showRegisterForm'])->name('register');
+//     Route::post('/register', [AdminAuthController::class, 'register']);
+// });
 
 
 
 
 Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
-// Route::get('/register', [AdminAuthController::class, 'showRegisterForm'])->name('register');
-// Route::post('/register', [AdminAuthController::class, 'register']);
-// Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('login');
-// Route::post('/login', [AdminAuthController::class, 'login']);
+
+Route::get('/register', [AdminAuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AdminAuthController::class, 'register']);
+Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AdminAuthController::class, 'login']);
 
 Route::middleware('admindashboard')->group(function () {
     Route::prefix("dashboard")->group(function () {

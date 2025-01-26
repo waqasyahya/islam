@@ -1,22 +1,22 @@
-@extends('Homescreen.Header-Layout')
-@include('Homescreen.cookies')
-<!DOCTYPE html>
-<html lang="en">
+@extends('HomeScreen.Header-Layout')
+@include('HomeScreen.cookies')
+
 
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="assets/css/main.css" rel="stylesheet">
-    <title>islameapp</title>
-    <link href="/image/WIthColor_logo.png" rel="icon">
+    <link href="public/assets/css/main.css" rel="stylesheet">
+    <title>Islameapp</title>
+    <link href="/image/WIthColor_logo.png"  type="image/png" sizes="16x16" rel="icon">
     <link href="/image/WIthColor_logo.png" rel="apple-touch-icon">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-    <link rel="stylesheet" href="/css/Islame.css" />
+    <link rel="stylesheet" href="css/Islame.css" />
     <link rel="stylesheet" href="/css/islameapp.css" />
 </head>
+
 
 <body>
 
@@ -133,7 +133,7 @@
 
 
     <div id="preloader"></div>
-    @include('Homescreen.Footer-Layout')
+    @include('HomeScreen.Footer-Layout')
 
 
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

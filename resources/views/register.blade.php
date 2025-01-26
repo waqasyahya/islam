@@ -123,7 +123,7 @@
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="far fa-user"></span>
-                <input type="text" name="passowrd" id="passowrd" placeholder="passowrd">
+                <input type="text" name="password" id="password" placeholder="password">
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-key"></span>
