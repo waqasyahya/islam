@@ -53,4 +53,31 @@ if (!function_exists('custom_exception')) {
         }
     }
 
+
+    function hasPermission($permission)
+    {
+        return true;
+    
+        try{
+            if (!Auth::check()) {
+                return false;
+            }
+            $roleId=Auth::user()->role_id;
+            $role = Roles::with('component_permissions.component')->find($roleId);
+    
+            $data = $role->component_permissions->map(function ($permission) {
+                $componentTitle = $permission->component->title;
+                $permissionTitle = $permission->title;
+                $componentPermissionTitle = $componentTitle . '_' . $permissionTitle;
+    
+                return $componentPermissionTitle;
+            });
+    
+            return $data->contains($permission);
+        }
+        catch (\Exception $e) {
+            return false;
+        }
+    }       
+
 }
