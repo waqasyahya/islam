@@ -31,7 +31,6 @@
     <div class="page-header ">
         <div class="page-leftheader">
 
-
         </div>
     </div>
     <!-- END PAGE HEADER -->
@@ -52,7 +51,6 @@
 
     <div id="app">
         <div id="wrapper" style="margin-top:-60px;">
-
 
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
@@ -82,7 +80,6 @@
                                 </div>
                             </div>
                         </form>
-
 
                         <!-- Topbar Navbar -->
                         <ul class="navbar-nav ml-auto">
@@ -119,9 +116,6 @@
                                         class="fas fa-download fa-sm text-white-50"></i>Send Email</a>
                             </div>
 
-
-
-
                             <!-- Nav Item - User Information -->
                             <li class="nav-item dropdown no-arrow">
 
@@ -156,7 +150,6 @@
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-
 
                         <!-- Content Row -->
                         <div class="row">
@@ -267,32 +260,22 @@
                             <div class="col-xl-4 col-lg-5">
                                 <div class="card shadow mb-4">
 
-
-
                                 </div>
                             </div>
 
                             <!-- Content Row -->
                             <div class="row">
 
-
-
-
                             </div>
 
                         </div>
 
-
                     </div>
-
-
 
                 </div>
 
-
             </div>
         </div>
-
 
         <style>
             .splash {
@@ -379,7 +362,6 @@
                     const cities = data.map(visit => visit.city);
                     const longitudes = data.map(visit => visit.longitude);
                     const latitudes = data.map(visit => visit.latitude);
-
                     // Prepare dataset
                     const chartData = {
                         labels: labels,
@@ -392,7 +374,6 @@
                             pointBackgroundColor: 'rgba(75, 192, 192, 1)',
                         }]
                     };
-
                     // Create the chart
                     const ctx = document.getElementById('visitsChart').getContext('2d');
                     const visitsChart = new Chart(ctx, {
@@ -429,10 +410,6 @@
                     });
                 });
         </script>
-
-
-
-
 
         <script>
             // Fetch progress data from your Laravel API

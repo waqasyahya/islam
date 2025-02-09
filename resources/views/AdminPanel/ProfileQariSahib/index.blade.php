@@ -1,20 +1,12 @@
 @extends('layouts.app')
 @section('title')
-    ProfileQariSahib
+    Dashboard
 @endsection
 
 @section('page-header')
     <!-- PAGE HEADER -->
     <div class="page-header mt-5-7">
-        <div class="page-leftheader">
-            <h4 class="page-title mb-0" style="color: #006d74;font-size:24px; font-weight:500;">ProfileQariSahib</h4>
-            <ol class="breadcrumb mb-2">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i
-                            style="color: #006d74;font-size:24px; font-weight:500;"
-                            class="fa-solid fa-chart-tree-map mr-2 fs-12"></i>Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="#"> ProfileQariSahib</a></li>
-            </ol>
-        </div>
+
     </div>
     <!-- END PAGE HEADER -->
 @endsection
@@ -97,8 +89,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">experience</label>
-                                    <input name="experience" type="text" class="form-control"
-                                        placeholder="experience" required="">
+                                    <input name="experience" type="text" class="form-control" placeholder="experience"
+                                        required="">
                                     <div class="invalid-feedback"> experience is Required.</div>
                                 </div>
                             </div>
@@ -293,7 +285,7 @@
 
             <h3 class="card-title" style="font-size:24px;font-weight:600;">
                 <i class="fas fa-bars-staggered mr-1"></i>
-                Blog
+                Dashboard
             </h3>
             <div class="card-tools">
                 <ul class="nav nav-pills ml-auto">

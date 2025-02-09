@@ -1,24 +1,14 @@
 @extends('layouts.app')
 @section('title')
-QuaidaTest
+    Dashboard
 @endsection
 
 @section('page-header')
-
     <div class="page-header mt-5-7">
-        <div class="page-leftheader">
-            <h4 class="page-title mb-0">QuaidaTest</h4>
-            <ol class="breadcrumb mb-2">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i
-                            class="fa-solid fa-chart-tree-map mr-2 fs-12"></i>Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="#"> QuaidaTest</a></li>
-            </ol>
-        </div>
-    </div>
 
+    </div>
 @endsection
 @section('content')
-
     <div class="modal fade" id="add_product_modal" tabindex="-1" role="dialog" aria-labelledby="createBookingModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
@@ -49,12 +39,12 @@ QuaidaTest
                                     <div class="invalid-feedback"> Name is Required.</div>
                                 </div>
                             </div>
-                          
-                           
 
 
 
-                          
+
+
+
 
 
 
@@ -75,10 +65,10 @@ QuaidaTest
                                     <div class="invalid-feedback">audio1 is Required.</div>
                                 </div>
                             </div>
-                           
+
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="form-label">  select Quaida_id</label>
+                                    <label class="form-label"> select Quaida_id</label>
                                     <input name="Quaida_id" id="Quaida_id" type="text" class="form-control"
                                         placeholder="Select audio">
                                     <div class="invalid-feedback">Quaida_id is Required.</div>
@@ -120,8 +110,8 @@ QuaidaTest
                 var id = document.forms["add_Testing_form"]["id"].value;
                 var option_1 = document.forms["add_Testing_form"]["option_1"].value;
                 var option_2 = document.forms["add_Testing_form"]["option_2"].value;
-                
-              
+
+
                 var Quaida_id = document.forms["add_Testing_form"]["Quaida_id"].value;
 
 
@@ -129,7 +119,7 @@ QuaidaTest
 
 
                 var audio1File = $('#audio1')[0].files;
-               
+
 
 
                 if (audio1File.length > 0) {
@@ -137,17 +127,17 @@ QuaidaTest
 
                     var formData = new FormData();
 
-    formData.append('audio1', audio1File[0]);
-  
+                    formData.append('audio1', audio1File[0]);
+
 
 
 
                     formData.append('id', id);
                     formData.append('option_1', option_1);
                     formData.append('option_2', option_2);
-                    
-                   
-                    formData.append('Quaida_id', 	Quaida_id	);
+
+
+                    formData.append('Quaida_id', Quaida_id);
 
 
 
@@ -188,7 +178,6 @@ QuaidaTest
     </script>
 
     <script>
-
         function Testing_read_by_id(id) {
             $.ajax({
                 type: "GET",
@@ -201,12 +190,12 @@ QuaidaTest
                     document.forms["add_Testing_form"]["id"].value = response.id;
                     document.forms["add_Testing_form"]["option_1"].value = response.option_1;
                     document.forms["add_Testing_form"]["option_2"].value = response.option_2;
-                    
-                  
+
+
                     document.forms["add_Testing_form"]["Quaida_id"].value = response.Quaida_id;
 
 
-document.getElementById("audio1").value = response.audio1;
+                    document.getElementById("audio1").value = response.audio1;
 
                 },
                 error: function(e, f, g) {
@@ -239,14 +228,16 @@ document.getElementById("audio1").value = response.audio1;
 
             <h3 class="card-title">
                 <i class="fas fa-bars-staggered mr-1"></i>
-            Testing
+                Dashboard
             </h3>
             <div class="card-tools">
                 <ul class="nav nav-pills ml-auto">
                     <li class="nav-item mr-1 mt-2">
-                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#add_product_modal"><i class="fas fa-plus-circle"></i> Add Testing</button>
+                        <button class="btn btn-sm " data-bs-toggle="modal" data-bs-target="#add_product_modal"
+                            style="background-color:white;color:#006d74;font-size:16px;font-weight:600;"><i
+                                class="fas fa-plus-circle"></i> Add new</button>
                     </li>
+
 
                 </ul>
             </div>
@@ -260,12 +251,12 @@ document.getElementById("audio1").value = response.audio1;
                         <th>id</th>
                         <th>option_1</th>
                         <th>option_2</th>
-                        
+
                         <th>audio1</th>
-                    
+
                         <th>Quaida_id</th>
 
-                         <th>Action</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
             </table>
@@ -275,19 +266,19 @@ document.getElementById("audio1").value = response.audio1;
 
     <script>
         var dataTable;
-      
 
-                $(document).ready(function() {
-        var dataTable = $("#example").DataTable({
-            "processing": true,
-            "serverSide": true,
-            "ajax": {
-                url: "{{ route('QuaidaTest.read') }}",
-                type: "GET",
-                data: {
-                    "_token": "{{ csrf_token() }}"
-                }
-            },
+
+        $(document).ready(function() {
+            var dataTable = $("#example").DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    url: "{{ route('QuaidaTest.read') }}",
+                    type: "GET",
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    }
+                },
 
 
                 "columns": [{
@@ -299,22 +290,23 @@ document.getElementById("audio1").value = response.audio1;
                     {
                         data: "option_2"
                     },
-                   
 
 
 
 
-{
 
-render: function(data, type, row) {
+                    {
 
-        return '<audio controls style="width: 100px; margin-left: 20px; margin-top: 30px;"><source src="{{asset('Quranfolder/')}}/' + row.audio1 +'" type="audio/mpeg"></audio>';
+                        render: function(data, type, row) {
+
+                            return '<audio controls style="width: 100px; margin-left: 20px; margin-top: 30px;"><source src="{{ asset('Quranfolder/') }}/' +
+                                row.audio1 + '" type="audio/mpeg"></audio>';
 
 
-}
-},
+                        }
+                    },
 
-{
+                    {
                         data: "Quaida_id"
                     },
 
@@ -344,18 +336,4 @@ render: function(data, type, row) {
         });
     </script>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
 @endsection

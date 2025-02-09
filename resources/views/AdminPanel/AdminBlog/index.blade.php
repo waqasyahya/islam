@@ -1,19 +1,12 @@
 @extends('layouts.app')
 @section('title')
-AdminBlog
+    Dashboard
 @endsection
 
 @section('page-header')
     <!-- PAGE HEADER -->
     <div class="page-header mt-5-7">
-        <div class="page-leftheader">
-            <h4 class="page-title mb-0" style="color: #006d74;font-size:24px; font-weight:500;">AdminBlog</h4>
-            <ol class="breadcrumb mb-2">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i
-                    style="color: #006d74;font-size:24px; font-weight:500;"          class="fa-solid fa-chart-tree-map mr-2 fs-12"></i>Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="#"> AdminBlog</a></li>
-            </ol>
-        </div>
+
     </div>
     <!-- END PAGE HEADER -->
 @endsection
@@ -118,15 +111,15 @@ AdminBlog
 
                 var Description = document.forms["add_blogpage_form"]["Description"].value;
                 // alert(qty);
-                 var file = $('#image')[0].files;
+                var file = $('#image')[0].files;
 
 
 
-                if (file.length > 0 ) {
+                if (file.length > 0) {
 
                     // alert("ok");
                     var formData = new FormData();
-                     formData.append('image', file[0]);
+                    formData.append('image', file[0]);
 
 
 
@@ -188,7 +181,7 @@ AdminBlog
                     document.forms["add_blogpage_form"]["tittle"].value = response.tittle;
                     document.forms["add_blogpage_form"]["underdecsription"].value = response.underdecsription;
                     document.forms["add_blogpage_form"]["Description"].value = response.Description;
-                     document.getElementById("image").value = response.image;
+                    document.getElementById("image").value = response.image;
 
                 },
                 error: function(e, f, g) {
@@ -219,15 +212,15 @@ AdminBlog
     <div class="card">
         <div class="card-header ui-sortable-handle" style="cursor: move;display: table-row;">
 
-            <h3 class="card-title" 
-            style="font-size:24px;font-weight:600;">
+            <h3 class="card-title" style="font-size:24px;font-weight:600;">
                 <i class="fas fa-bars-staggered mr-1"></i>
-            Blog
+                Dashboard
             </h3>
             <div class="card-tools">
                 <ul class="nav nav-pills ml-auto">
                     <li class="nav-item mr-1 mt-2">
-                        <button class="btn btn-sm " data-bs-toggle="modal" style="background-color:white;color:#006d74;font-size:16px;font-weight:600;"
+                        <button class="btn btn-sm " data-bs-toggle="modal"
+                            style="background-color:white;color:#006d74;font-size:16px;font-weight:600;"
                             data-bs-target="#add_product_modal"><i class="fas fa-plus-circle"></i> Add new</button>
                     </li>
 
@@ -246,9 +239,9 @@ AdminBlog
 
 
                         <th>Description</th>
-                         <th>Image</th>
+                        <th>Image</th>
 
-                         <th>Action</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
             </table>

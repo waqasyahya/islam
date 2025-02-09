@@ -1,21 +1,12 @@
 @extends('layouts.app')
 @section('title')
-AdminPost
+    Dashboard
 @endsection
 
 @section('page-header')
     <!-- PAGE HEADER -->
     <div class="page-header mt-5-7">
-        <div class="page-leftheader">
-            <h4 class="page-title mb-0" 
-            style="color: #006d74;font-size:24px; font-weight:500;">Create AdminPost</h4>
-            <ol class="breadcrumb mb-2">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i
-                            class="fa-solid fa-chart-tree-map mr-2 fs-12" 
-                            style="color: #006d74;font-size:24px; font-weight:500;"></i>Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="#"> AdminPost</a></li>
-            </ol>
-        </div>
+
     </div>
     <!-- END PAGE HEADER -->
 @endsection
@@ -67,8 +58,8 @@ AdminPost
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="form-label">Description2</label>
-                                    <input name="Description2" type="text" class="form-control" placeholder="Description2"
-                                        required="">
+                                    <input name="Description2" type="text" class="form-control"
+                                        placeholder="Description2" required="">
                                     <div class="invalid-feedback">Description2 is Required.</div>
                                 </div>
                             </div>
@@ -76,8 +67,8 @@ AdminPost
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="form-label">Description3</label>
-                                    <input name="Description3" type="text" class="form-control" placeholder="Description3"
-                                        required="">
+                                    <input name="Description3" type="text" class="form-control"
+                                        placeholder="Description3" required="">
                                     <div class="invalid-feedback">Description3 is Required.</div>
                                 </div>
                             </div>
@@ -100,16 +91,16 @@ AdminPost
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="form-label">meta_keywords</label>
-                                    <input name="meta_keywords" type="text" class="form-control" placeholder="meta_keywords"
-                                        required="">
+                                    <input name="meta_keywords" type="text" class="form-control"
+                                        placeholder="meta_keywords" required="">
                                     <div class="invalid-feedback">meta_keywords is Required.</div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="form-label">meta_description</label>
-                                    <input name="meta_description" type="text" class="form-control" placeholder="meta_description"
-                                        required="">
+                                    <input name="meta_description" type="text" class="form-control"
+                                        placeholder="meta_description" required="">
                                     <div class="invalid-feedback">meta_description is Required.</div>
                                 </div>
                             </div>
@@ -172,15 +163,15 @@ AdminPost
                 var meta_keywords = document.forms["add_blogpost_form"]["meta_keywords"].value;
                 var meta_description = document.forms["add_blogpost_form"]["meta_description"].value;
 
-                 var file = $('#image')[0].files;
+                var file = $('#image')[0].files;
 
 
 
-                if (file.length > 0 ) {
+                if (file.length > 0) {
 
 
                     var formData = new FormData();
-                     formData.append('image', file[0]);
+                    formData.append('image', file[0]);
 
 
 
@@ -252,7 +243,7 @@ AdminPost
                     document.forms["add_blogpost_form"]["meta_title"].value = response.meta_title;
                     document.forms["add_blogpost_form"]["meta_keywords"].value = response.meta_keywords;
                     document.forms["add_blogpost_form"]["meta_description"].value = response.meta_description;
-                     document.getElementById("image").value = response.image;
+                    document.getElementById("image").value = response.image;
 
                 },
                 error: function(e, f, g) {
@@ -285,12 +276,13 @@ AdminPost
 
             <h3 class="card-title" style="font-size:24px;font-weight:600;">
                 <i class="fas fa-bars-staggered mr-1"></i>
-            Post
+                Dashboard
             </h3>
             <div class="card-tools">
                 <ul class="nav nav-pills ml-auto">
                     <li class="nav-item mr-1 mt-2">
-                        <button class="btn btn-sm " data-bs-toggle="modal" style="background-color:white;color:#006d74;font-size:16px;font-weight:600;"
+                        <button class="btn btn-sm " data-bs-toggle="modal"
+                            style="background-color:white;color:#006d74;font-size:16px;font-weight:600;"
                             data-bs-target="#add_product_modal"><i class="fas fa-plus-circle"></i> Add new</button>
                     </li>
 
@@ -312,8 +304,8 @@ AdminPost
                         <th>meta_title</th>
                         <th>meta_keywords</th>
                         <th>meta_description</th>
-                         <th>Image</th>
-                         <th>Action</th>
+                        <th>Image</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
             </table>
