@@ -16,58 +16,44 @@
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createBookingModalLabel">Create Visitor </h5>
+                    <h5 class="modal-title" id="createBookingModalLabel">Create User </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                 </div>
-                <form class="needs-validation row" id="add_Quran_form" novalidate="">
+                <form class="needs-validation row" id="add_User_form" novalidate="">
                     @csrf
                     <input name="id" type="text" hidden>
                     <div class="modal-body ">
                         <div class="row mx-2">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="form-label">country</label>
-                                    <input name="country" type="text" class="form-control" placeholder="country"
+                                    <label class="form-label">name</label>
+                                    <input name="name" type="text" class="form-control" placeholder="name"
                                         required="">
-                                    <div class="invalid-feedback"> country is Required.</div>
+                                    <div class="invalid-feedback"> name is Required.</div>
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <label class="form-label">city</label>
-                                <input name="city" type="text" class="form-control" placeholder="city" required="">
-                                <div class="invalid-feedback"> city is Required.</div>
+                                <label class="form-label">email</label>
+                                <input name="email" type="email" class="form-control" placeholder="email"
+                                    required="">
+                                <div class="invalid-feedback"> email is Required.</div>
                             </div>
                             <div class="col-md-12">
-                                <label class="form-label">region</label>
-                                <input name="region" type="text" class="form-control" placeholder="region"
+                                <label class="form-label">phone</label>
+                                <input name="phone" type="number" class="form-control" placeholder="phone"
                                     required="">
-                                <div class="invalid-feedback"> region is Required.</div>
+                                <div class="invalid-feedback"> phone is Required.</div>
                             </div>
                             <div class="col-md-12">
-                                <label class="form-label">latitude</label>
-                                <input name="latitude" type="text" class="form-control" placeholder="latitude"
+                                <label class="form-label">password</label>
+                                <input name="password" type="text" class="form-control" placeholder="password"
                                     required="">
-                                <div class="invalid-feedback"> latitude is Required.</div>
+                                <div class="invalid-feedback"> password is Required.</div>
                             </div>
-                            <div class="col-md-12">
-                                <label class="form-label">longitude</label>
-                                <input name="longitude" type="text" class="form-control" placeholder="longitude"
-                                    required="">
-                                <div class="invalid-feedback"> longitude is Required.</div>
-                            </div>
-                            <div class="col-md-12">
-                                <label class="form-label">ip_address</label>
-                                <input name="ip_address" type="text" class="form-control" placeholder="ip_address"
-                                    required="">
-                                <div class="invalid-feedback"> ip_address is Required.</div>
-                            </div>
-                            <div class="col-md-12">
-                                <label class="form-label">visited_at</label>
-                                <input name="visited_at" type="text" class="form-control" placeholder="visited_at"
-                                    required="">
-                                <div class="invalid-feedback"> visited_at is Required.</div>
-                            </div>
+
+
+
 
 
 
@@ -98,32 +84,29 @@
             }
         }
         //property
-        $("#add_Quran_form").submit(function(e) {
+        $("#add_User_form").submit(function(e) {
             e.preventDefault();
-            var form = document.forms["add_Quran_form"];
+            var form = document.forms["add_User_form"];
             if (form.checkValidity() === true) {
-                var id = document.forms["add_Quran_form"]["id"].value;
-                var country = document.forms["add_Quran_form"]["country"].value;
-                var city = document.forms["add_Quran_form"]["city"].value;
-                var region = document.forms["add_Quran_form"]["region"].value;
-                var latitude = document.forms["add_Quran_form"]["latitude"].value;
-                var longitude = document.forms["add_Quran_form"]["longitude"].value;
-                var ip_address = document.forms["add_Quran_form"]["ip_address"].value;
-                var visited_at = document.forms["add_Quran_form"]["visited_at"].value;
+                var id = document.forms["add_User_form"]["id"].value;
+                var name = document.forms["add_User_form"]["name"].value;
+                var email = document.forms["add_User_form"]["email"].value;
+                var phone = document.forms["add_User_form"]["phone"].value;
+                var password = document.forms["add_User_form"]["password"].value;
+
 
 
                 $.ajax({
                     type: "GET",
-                    url: "{{ route('Visitor.store') }}",
+                    url: "{{ route('User.store') }}",
                     data: {
                         id: id,
-                        country: country,
-                        city: city,
-                        region: region,
-                        latitude: latitude,
-                        longitude: longitude,
-                        ip_address: ip_address,
-                        visited_at: visited_at,
+                        name: name,
+                        name: name,
+                        email: email,
+                        phone: phone,
+                        password: password,
+
 
 
                         "_token": "{{ csrf_token() }}"
@@ -131,7 +114,7 @@
                     success: function(response) {
                         if (response.status == "200") {
                             $("#add_property_modal").modal("hide");
-                            document.forms["add_Quran_form"].reset();
+                            document.forms["add_User_form"].reset();
                             toastr.success("Record Save Successfully");
                             dataTable.ajax.reload();
                         } else {
@@ -153,20 +136,17 @@
         function read_read_by_id(id) {
             $.ajax({
                 type: "GET",
-                url: "{{ route('Visitor.readbyid', ['id' => '']) }}/" + id,
+                url: "{{ route('User.readbyid', ['id' => '']) }}/" + id,
                 dataType: "json",
                 data: {
                     "_token": "{{ csrf_token() }}"
                 },
                 success: function(response) {
-                    document.forms["add_Quran_form"]["id"].value = response.id;
-                    document.forms["add_Quran_form"]["country"].value = response.country;
-                    document.forms["add_Quran_form"]["city"].value = response.city;
-                    document.forms["add_Quran_form"]["region"].value = response.region;
-                    document.forms["add_Quran_form"]["latitude"].value = response.latitude;
-                    document.forms["add_Quran_form"]["longitude"].value = response.longitude;
-                    document.forms["add_Quran_form"]["ip_address"].value = response.ip_address;
-                    document.forms["add_Quran_form"]["visited_at"].value = response.visited_at;
+                    document.forms["add_User_form"]["id"].value = response.id;
+                    document.forms["add_User_form"]["name"].value = response.name;
+                    document.forms["add_User_form"]["email"].value = response.email;
+                    document.forms["add_User_form"]["phone"].value = response.phone;
+                    document.forms["add_User_form"]["password"].value = response.password;
 
 
 
@@ -181,7 +161,7 @@
         function purpose_delete(id) {
             $.ajax({
                 type: "GET",
-                url: "{{ route('Visitor.delete', ['id' => '']) }}/" + id,
+                url: "{{ route('User.delete', ['id' => '']) }}/" + id,
                 dataType: "json",
                 data: {
                     "_token": "{{ csrf_token() }}"
@@ -205,7 +185,7 @@
 
             <h3 class="card-title">
                 <i class="fas fa-bars-staggered mr-1" style="font-size:24px;font-weight:600;"></i>
-                Visit User my website
+                Dashboard
             </h3>
             <div class="card-tools">
                 <ul class="nav nav-pills ml-auto">
@@ -224,13 +204,10 @@
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th>country</th>
-                        <th>city</th>
-                        <th>region</th>
-                        <th>latitude</th>
-                        <th>longitude</th>
-                        <th>ip_address</th>
-                        <th>visited_at</th>
+                        <th>name</th>
+                        <th>email</th>
+                        <th>phone</th>
+                        <th>password</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -243,7 +220,7 @@
         $(document).ready(function() {
             dataTable = $("#example").DataTable({
                 "ajax": {
-                    url: "{{ route('Visitor.read') }}",
+                    url: "{{ route('User.read') }}",
                     type: "GET",
                     data: {
                         "_token": "{{ csrf_token() }}"
@@ -253,25 +230,17 @@
                         data: "id"
                     },
                     {
-                        data: "country"
+                        data: "name"
                     },
                     {
-                        data: "city"
+                        data: "email"
                     },
                     {
-                        data: "region"
+                        data: "phone"
                     },
                     {
-                        data: "latitude"
-                    },
-                    {
-                        data: "longitude"
-                    },
-                    {
-                        data: "ip_address"
-                    },
-                    {
-                        data: "visited_at"
+                        data: 'password'
+
                     },
 
 

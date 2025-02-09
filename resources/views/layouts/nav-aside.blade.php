@@ -100,6 +100,11 @@
                             <span class="side-menu__icon lead-3 fs-18 fa-solid fa-user fa-regular "></span>
                             <span class="side-menu__label"> Visitor </span></a>
                     </li>
+                    <li class="slide">
+                        <a class="side-menu__item" href="{{ route('User') }}">
+                            <span class="side-menu__icon lead-3 fs-18 fa-solid fa-user fa-regular "></span>
+                            <span class="side-menu__label"> User </span></a>
+                    </li>
 
                 </ul>
             </li>
