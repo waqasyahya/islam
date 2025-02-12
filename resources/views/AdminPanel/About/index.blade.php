@@ -188,9 +188,11 @@
             <div class="card-tools">
                 <ul class="nav nav-pills ml-auto">
                     <li class="nav-item mr-1 mt-2">
-                        <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                        <button class="btn btn-sm" data-bs-toggle="modal"
+                            style="background-color:white;color:#006d74;font-size:16px;font-weight:600;"
                             data-bs-target="#add_property_modal"><i class="fas fa-plus-circle"></i> Add NEW </button>
                     </li>
+
 
                 </ul>
             </div>
