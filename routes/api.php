@@ -20,13 +20,14 @@ use App\Http\Controllers\Api\ProfileAppQariSahibController;
 use App\Http\Controllers\Api\HroofAppVideoController;
 use App\Http\Controllers\Api\TestmonialAppController;
 use App\Http\Controllers\HomeScreenController;
+use App\Http\Controllers\AudioAnalysisController;
 
 /**
-     * Qaida  Routes:
-     * - "/"          -> Displays the about page (GET request)                      
-     * - "/read"      -> Fetches all about records (GET request)                     
-     * - "/store"     -> Stores a new about record (POST request)                    
-     */
+ * Qaida  Routes:
+ * - "/"          -> Displays the about page (GET request)                      
+ * - "/read"      -> Fetches all about records (GET request)                     
+ * - "/store"     -> Stores a new about record (POST request)                    
+ */
 Route::get("/lessonApp", [QuaidaAppController::class, "QuaidaApp"])->name("QuaidaApp");
 Route::get("/QuaidaDetailApp/{id}", [QuaidaAppDetailController::class, "QuaidaDetailApp"])->name("QuaidaDetailApp");
 Route::get("/QuaidaGuaideApp/{id}", [QuaidaAppGuaideController::class, "QuaidaGuaideApp"])->name("QuaidaGuaideApp");
@@ -37,11 +38,11 @@ Route::post('/submitAnswerQuaida', [QuaidaAppAnswerController::class, 'submitAns
 
 
 /**
-     * Quran  Routes:
-     * - "/"          -> Displays the about page (GET request)                      
-     * - "/read"      -> Fetches all about records (GET request)                     
-     * - "/store"     -> Stores a new about record (POST request)                    
-     */
+ * Quran  Routes:
+ * - "/"          -> Displays the about page (GET request)                      
+ * - "/read"      -> Fetches all about records (GET request)                     
+ * - "/store"     -> Stores a new about record (POST request)                    
+ */
 
 Route::get("/QuranApp", [QuranAPPController::class, "QuranApp"])->name("QuranApp");
 Route::get("/QuranAppGuaide/{id}", [QuranAppGuaideController::class, "QuranAppGuaide"])->name("QuranAppGuaide");
@@ -64,11 +65,11 @@ Route::get("/QuranWordAudio/{quranId}/{quranAyatId}/{quranWordsId}", [QuranAppWi
 Route::get("/QuranAyatAudio/{ayahId}", [QuranAppWithAyatController::class, "QuranAyatAudio"])->name("QuranAyatAudio");
 Route::get("/QuranAyatAudioSurah/{quranId}/{ayahId}", [QuranAppWithAyatController::class, "QuranAyatAudioSurah"])->name("QuranAyatAudioSurah");
 /**
-     * User Registerd  Routes:
-     * - "/"          -> Displays the about page (GET request)                      
-     * - "/read"      -> Fetches all about records (GET request)                     
-     * - "/store"     -> Stores a new about record (POST request)                    
-     */
+ * User Registerd  Routes:
+ * - "/"          -> Displays the about page (GET request)                      
+ * - "/read"      -> Fetches all about records (GET request)                     
+ * - "/store"     -> Stores a new about record (POST request)                    
+ */
 Route::post('/register', [UserAppController::class, 'register']);
 Route::post('/login', [UserAppController::class, 'login'])->name('login');
 Route::post('/update/{id}', [UserAppController::class, 'updateApp']);
@@ -95,3 +96,6 @@ Route::get('/tesmonialfile', [TestmonialAppController::class, 'tesmonialfile'])-
 Route::get('/islameapp', [UserAppController::class, 'islameapp']);
 Route::get('/visits', [HomeScreenController::class, 'getVisitsData']);
 Route::get('/progress', [HomeScreenController::class, 'getProgressData']);
+
+
+Route::post('/compare-audio', [AudioAnalysisController::class, 'compareAudio']);
