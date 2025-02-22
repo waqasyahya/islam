@@ -20,7 +20,9 @@ use App\Http\Controllers\Api\ProfileAppQariSahibController;
 use App\Http\Controllers\Api\HroofAppVideoController;
 use App\Http\Controllers\Api\TestmonialAppController;
 use App\Http\Controllers\HomeScreenController;
+// qamar
 use App\Http\Controllers\AudioAnalysisController;
+// 
 
 /**
  * Qaida  Routes:
@@ -97,5 +99,6 @@ Route::get('/islameapp', [UserAppController::class, 'islameapp']);
 Route::get('/visits', [HomeScreenController::class, 'getVisitsData']);
 Route::get('/progress', [HomeScreenController::class, 'getProgressData']);
 
-
-Route::post('/compare-audio', [AudioAnalysisController::class, 'compareAudio']);
+// qamar
+Route::post('/compare-audio/{Quaida_id}/{words_id}', [QuaidaAppDetailController::class, 'compareAudio']);
+//

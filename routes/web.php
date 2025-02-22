@@ -37,7 +37,7 @@ use App\Http\Controllers\UserController;
  * - "/read"      -> Fetches all about records (GET request)                     
  * - "/store"     -> Stores a new about record (POST request)                    
  */
-Route::get("/", [HomeScreenController::class, "islame"])->name("islamepage");
+// Route::get("/", [HomeScreenController::class, "islame"])->name("islamepage");
 Route::get("/aboutpage", [HomeScreenController::class, "aboutpage"])->name("aboutpage");
 Route::get("/featurepage", [HomeScreenController::class, "featurepage"])->name("featurepage");
 Route::get("/learnepage", [HomeScreenController::class, "learnepage"])->name("learnepage");
@@ -71,8 +71,8 @@ Route::post('/bookmark/toggle', [BookmarkController::class, 'toggleBookmark'])->
  */
 Route::get('/register', [AdminAuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AdminAuthController::class, 'register']);
-Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AdminAuthController::class, 'login']);
+Route::get('/', [AdminAuthController::class, 'showLoginForm'])->name('login');
+Route::post('/', [AdminAuthController::class, 'login']);
 Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 
 Route::middleware('admindashboard')->group(function () {

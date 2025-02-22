@@ -3,95 +3,92 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\Process\Process;
-use Illuminate\Support\Facades\Log; // ✅ Laravel Logging
 use Symfony\Component\Process\Exception\ProcessFailedException;
+use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
+use FFMpeg\Format\Audio\Wav; // ✅ Correct import
+use App\Models\QuaidaDetail;
 
 class AudioAnalysisController extends Controller
 {
-    public function compareAudio(Request $request)
+    public function compareAudio(Request $request, $quaida_id, $words_id)
     {
-        // ✅ Step 1: Check karein ke dono audio files upload hui hain ya nahi
-        if (!$request->hasFile('qari_audio') || !$request->hasFile('user_audio')) {
-            Log::error("Audio Upload Error: Dono audio files zaroori hain.");
-            return response()->json(['error' => 'Dono audio files zaroori hain'], 400);
+        // ✅ Step 1: Validate input (User must upload one audio file)
+        if (!$request->hasFile('user_audio')) {
+            Log::error("❌ Audio Upload Error: User audio file required.");
+            return response()->json(['error' => 'User audio file zaroori hai'], 400);
         }
 
-        // ✅ Step 2: Audio files ka sahi naam aur extension maintain karein
-        $qariAudio = $request->file('qari_audio');
+        // ✅ Step 2: Fetch database audio for the specific word inside the lesson
+        $wordDetail = QuaidaDetail::where('Quaida_id', $quaida_id)
+            ->where('Words_id', $words_id)
+            ->first();
+
+        if (!$wordDetail) {
+            Log::error("❌ Database Error: Quaida ID or Word ID not found.");
+            return response()->json(['error' => 'Invalid Quaida ID or Word ID!'], 404);
+        }
+
+        $qariAudioUrl = public_path('Quranfolder/' . $wordDetail->audio1);
+
+        if (!file_exists($qariAudioUrl)) {
+            Log::error("❌ File Not Found: " . $qariAudioUrl);
+            return response()->json(['error' => 'Qari ki audio file nahi mili!'], 404);
+        }
+
+        // ✅ Step 3: Store user uploaded audio
         $userAudio = $request->file('user_audio');
-
-        $qariFilename = uniqid() . "_qari_audio.wav";  // ✅ Sahi filename
-        $userFilename = uniqid() . "_user_audio.wav";  // ✅ Sahi filename
-
-        $qariPath = storage_path("app/audio/" . $qariFilename);
+        $userFilename = uniqid() . "_" . $userAudio->getClientOriginalName();
         $userPath = storage_path("app/audio/" . $userFilename);
 
-        // ✅ File ko move karne ke baad check karein ke sahi save hui ya nahi
-        if (
-            !$qariAudio->move(storage_path('app/audio'), $qariFilename) ||
-            !$userAudio->move(storage_path('app/audio'), $userFilename)
-        ) {
-            Log::error("File Move Error: Audio files save nahi ho saki.");
-            return response()->json(['error' => 'Audio file save failed'], 500);
-        }
+        $userAudio->move(storage_path('app/audio'), $userFilename);
 
-        Log::info("✅ Audio Files Saved Successfully!", [
-            'qari_path' => $qariPath,
-            'user_path' => $userPath
-        ]);
+        Log::info("✅ Uploaded User Audio Saved!", ['user_path' => $userPath]);
 
-        // ✅ Step 3: Python ka sahi path use karein
-        $pythonPath = "/usr/bin/python3";  // ✅ Python ka exact path
-        $scriptPath = base_path('python/compare.py');  // ✅ Python script ka exact path
+        // ✅ Step 4: Run Python script
+        $pythonPath = "/usr/bin/python3";
+        $scriptPath = base_path('python/compare.py');
 
-        // ✅ Step 4: Python script ko run karein using Symfony Process
-        $startTime = microtime(true);
-        $process = new Process([$pythonPath, $scriptPath, $qariPath, $userPath]);
+        $process = new Process([$pythonPath, $scriptPath, $qariAudioUrl, $userPath]);
         $process->setTimeout(600);
         $process->run();
-        $endTime = microtime(true);
-        $executionTime = round($endTime - $startTime, 2);
 
-        // ✅ Step 5: Debugging Logs (Python Raw Output)
         $rawOutput = trim($process->getOutput());
         $errorOutput = trim($process->getErrorOutput());
 
         Log::info("🐍 Python Script Raw Output: " . $rawOutput);
         Log::error("❌ Python Script Errors: " . $errorOutput);
 
-        // ✅ Step 6: Agar script fail ho gayi
         if (!$process->isSuccessful()) {
             return response()->json([
                 'error' => 'Python script execution failed!',
-                'details' => $errorOutput,
-                'execution_time' => "$executionTime seconds"
+                'details' => $errorOutput
             ], 500);
         }
 
-        // ✅ Step 7: JSON Response Laravel me parse karein
         $jsonOutput = json_decode($rawOutput, true);
 
         if (!$jsonOutput) {
-            Log::error("❌ Python Script Returned Invalid JSON!", [
-                'execution_time' => $executionTime . "s",
-                'raw_output' => $rawOutput
-            ]);
+            Log::error("❌ Python Script Returned Invalid JSON!", ['raw_output' => $rawOutput]);
             return response()->json([
                 'error' => 'Invalid response from Python script!',
-                'raw_output' => $rawOutput, // ✅ Debugging ke liye actual output show karega
-                'execution_time' => "$executionTime seconds"
+                'raw_output' => $rawOutput
             ], 500);
         }
 
-        Log::info("✅ Python Script Executed Successfully!", [
-            'execution_time' => "$executionTime seconds",
-            'output' => $jsonOutput
-        ]);
+        Log::info("✅ Python Script Executed Successfully!", ['output' => $jsonOutput]);
+
+        // ✅ Step 5: Delete user uploaded audio after comparison
+        if (file_exists($userPath)) {
+            unlink($userPath);
+            Log::info("🗑️ User audio deleted successfully!", ['user_path' => $userPath]);
+        } else {
+            Log::warning("⚠️ User audio file not found for deletion!", ['user_path' => $userPath]);
+        }
 
         return response()->json([
             'message' => 'Audio compared successfully!',
-            'execution_time' => "$executionTime seconds",
             'output' => $jsonOutput
         ]);
     }
