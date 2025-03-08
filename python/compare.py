@@ -85,16 +85,15 @@ def transcribe_audio(file_path):
     except Exception as e:
         return f"Error: Unexpected error in transcription: {str(e)}"
 
-def phoneme_similarity(qari_audio, user_audio):
-    """ ✅ Compare phonemes & Tajweed accuracy """
+def phoneme_similarity(qari_text, user_audio):
+    """ ✅ Compare phonemes & Tajweed accuracy with DB-stored Qari text """
     start_time = time.time()
 
-    # ✅ Qari & User audio ka text convert karein
-    qari_text = transcribe_audio(qari_audio)
+    # ✅ User audio ka text convert karein
     user_text = transcribe_audio(user_audio)
 
-    if "Error" in qari_text or "Error" in user_text:
-        return {"error": "Transcription failed for one or both audio files"}
+    if "Error" in user_text:
+        return {"error": "Transcription failed for user audio"}
 
     # ✅ Similarity Calculation
     similarity = difflib.SequenceMatcher(None, qari_text, user_text).ratio() * 100
@@ -110,7 +109,7 @@ def phoneme_similarity(qari_audio, user_audio):
     log_status(f"Comparison Done in {end_time - start_time:.2f} seconds")
 
     return {
-        "qari_text": qari_text,
+        "qari_text": qari_text,  # ✅ Now coming from DB
         "user_text": user_text,
         "similarity_score": round(similarity, 2),
         "tajweed_mistakes": mistakes

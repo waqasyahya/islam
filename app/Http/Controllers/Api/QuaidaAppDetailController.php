@@ -83,8 +83,8 @@ class QuaidaAppDetailController extends Controller
         // ✅ Step 4: Run Python script
         $pythonPath = "/usr/bin/python3";
         $scriptPath = base_path('python/compare.py');
-
-        $process = new Process([$pythonPath, $scriptPath, $qariAudioUrl, $userPath]);
+        $wordsArabic = $wordDetail->Words_Arabic;
+        $process = new Process([$pythonPath, $scriptPath, $wordsArabic, $userPath]);
         $process->setTimeout(600);
         $process->run();
 
