@@ -5,7 +5,6 @@ use App\Http\Controllers\VistUserController;
 use App\Http\Controllers\AdminAuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\QuaidaAppDetailController;
-
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\QuaidaController;
@@ -18,50 +17,18 @@ use App\Http\Controllers\QuranWithAyatController;
 use App\Http\Controllers\QuranAyatWithAnswerController;
 use App\Http\Controllers\QuranAyatWithTestingController;
 use App\Http\Controllers\QuranGuaideController;
-use App\Http\Controllers\HomeScreenController;
 use App\Http\Controllers\AdminBlogController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\ProfileQariSahibController;
 use App\Http\Controllers\QuranWithWordController;
 use App\Http\Controllers\QuranWordWithTestingController;
 use App\Http\Controllers\QuranWordWithAnswerController;
-use App\Http\Controllers\HroofVideoController;
 use App\Http\Controllers\TestmonialAppController;
 use App\Http\Controllers\ContactMeController;
 use App\Http\Controllers\IslameappController;
-use App\Http\Controllers\OTPController;
-use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\UserController;
 
-/**
- * Home Screen  Routes:
- * - "/"          -> Displays the about page (GET request)                      
- * - "/read"      -> Fetches all about records (GET request)                     
- * - "/store"     -> Stores a new about record (POST request)                    
- */
-// Route::get("/", [HomeScreenController::class, "islame"])->name("islamepage");
-Route::get("/aboutpage", [HomeScreenController::class, "aboutpage"])->name("aboutpage");
-Route::get("/featurepage", [HomeScreenController::class, "featurepage"])->name("featurepage");
-Route::get("/learnepage", [HomeScreenController::class, "learnepage"])->name("learnepage");
-Route::get("/blogpage", [HomeScreenController::class, "blogpage"])->name("blogpage");
-Route::get("/servics", [HomeScreenController::class, "servicspage"])->name("servicspage");
-Route::post('/servics', [ContactMeController::class, 'storeapp'])->name('contact.storeapp');
-Route::get('/post/{id}/{tittle}', [HomeScreenController::class, 'post'])->name('post');
-Route::get('/qariProfile', [HomeScreenController::class, 'qariProfile'])->name('qariProfile');
-Route::post('/store', [HomeScreenController::class, 'storeApp'])->name('store');
-Route::get('/store', [HroofVideoController::class, 'store'])->name('store');
-Route::get('/DetailQari/{id}', [HomeScreenController::class, 'DetailQari'])->name('DetailQari');
-Route::get("/storeapp", [ContactMeController::class, "storeapp"])->name("storeapp");
-Route::get('/visits', [HomeScreenController::class, 'getVisitsData']);
-Route::get('/set-cookie/{theme}', [HomeScreenController::class, 'setCookie']);
-Route::get('/delete-cookie', [HomeScreenController::class, 'deleteCookie']);
-Route::get('/quaida-detail/{quaida_id}', [HomeScreenController::class, 'QuaidaDetailApp']);
-Route::get('/quran-detail/{quran_id}', [HomeScreenController::class, 'QuranDetailApp']);
-Route::get('/quaidaapp/', [HomeScreenController::class, 'QuaidaApp'])->name('quaida-detail');
-Route::get('/quranapp/', [HomeScreenController::class, 'QuranApp'])->name('quran');
-Route::post('/bookmark', [BookmarkController::class, 'toggleBookmark'])->name('bookmark.toggle');
-Route::get('/bookmarks', [BookmarkController::class, 'showBookmarks']);
-Route::post('/bookmark/toggle', [BookmarkController::class, 'toggleBookmark'])->name('bookmark.toggle');
+
 ############################################################ Start Admin Panel #########################################################################
 /**
  * Admin Panel  Routes:
@@ -240,19 +207,6 @@ Route::middleware('admindashboard')->group(function () {
 });
 
 
-// Route::get('otpregister', [OTPController::class, 'showRegistrationForm'])->name('otpregister');
-// Route::post('otpregister', [OTPController::class, 'otpregister']); // Kept as 'otpregister'
-// Route::get('otp/verify', [OTPController::class, 'showVerifyForm'])->name('otp.verify');
-// Route::post('otp/verify', [OTPController::class, 'verify']);
-// Route::get("/", [HomeScreenController::class, "islame"])->name('home');
-// Route::get("/test", [HroofVideoController::class, "test"])->name('test');
-// Route::middleware('restrictAuthPages')->group(function () {
-//     Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('login');
-//     Route::post('/login', [AdminAuthController::class, 'login']);
-//     Route::get('/register', [AdminAuthController::class, 'showRegisterForm'])->name('register');
-//     Route::post('/register', [AdminAuthController::class, 'register']);
-// });
-// Route::post('/bookmark', [BookmarkController::class, 'toggleBookmarkQuran'])->name('bookmarkquran.toggle');
 
 Route::get('/audio-recorder/{Quaida_id}/{words_id}', function ($Quaida_id, $words_id) {
     return view('audio_recorder', compact('Quaida_id', 'words_id'));
