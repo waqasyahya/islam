@@ -4,6 +4,8 @@ use App\Http\Controllers\EmailController;
 use App\Http\Controllers\VistUserController;
 use App\Http\Controllers\AdminAuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\QuaidaAppDetailController;
+
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\QuaidaController;
@@ -251,3 +253,9 @@ Route::middleware('admindashboard')->group(function () {
 //     Route::post('/register', [AdminAuthController::class, 'register']);
 // });
 // Route::post('/bookmark', [BookmarkController::class, 'toggleBookmarkQuran'])->name('bookmarkquran.toggle');
+
+Route::get('/audio-recorder/{Quaida_id}/{words_id}', function ($Quaida_id, $words_id) {
+    return view('audio_recorder', compact('Quaida_id', 'words_id'));
+});
+Route::post('/compare-audio/{Quaida_id}/{words_id}', [QuaidaAppDetailController::class, 'compareAudio'])
+    ->name('compare-audio');
